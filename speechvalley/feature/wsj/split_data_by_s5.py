@@ -17,14 +17,14 @@ test set: dev93
 
 import shutil
 import os
-from speechvalley.feature.core import check_path_exists
+#from speechvalley.feature.core import check_path_exists
 
 def split_data_by_s5(src_dir, des_dir, keywords=['train_si284', 'test_eval92', 'test_dev93']):
   count = 0
   for key in keywords:
     wav_file_list = os.path.join(src_dir, key+'.flist') 
     label_file_list = os.path.join(src_dir, key+'.txt') 
-    new_path = check_path_exists(os.path.join(des_dir, key))
+    #new_path = check_path_exists(os.path.join(des_dir, key))
 
     with open(wav_file_list, 'r') as wfl:
       wfl_contents = wfl.readlines()

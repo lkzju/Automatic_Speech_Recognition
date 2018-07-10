@@ -23,7 +23,7 @@ import os
 import argparse
 import glob
 import sys
-import sklearn
+#import sklearn
 import numpy as np
 import scipy.io.wavfile as wav
 from sklearn import preprocessing
@@ -111,6 +111,8 @@ def wav2feature(rootdir, save_directory, mode, feature_len, level, keywords, win
 
 if __name__ == '__main__':
     # character or phoneme
+    #corpus_dir = "C:\\Research\\Corpus\\TIMIT\\"
+    #save_dir = "C:\\Research\\Corpus\\InputFiles"
     parser = argparse.ArgumentParser(prog='timit_preprocess',
                                      description="""
                                      Script to preprocess timit data
@@ -123,12 +125,12 @@ if __name__ == '__main__':
                         type=str, default='train')
     parser.add_argument("-l", "--level", help="Level",
                         choices=['cha', 'phn'],
-                        type=str, default='cha')
+                        type=str, default='phn')
     parser.add_argument("-m", "--mode", help="Mode",
                         choices=['mfcc', 'fbank'],
                         type=str, default='mfcc')
     parser.add_argument('--featlen', type=int, default=13, help='Features length')
-    parser.add_argument("--seq2seq", help="set this flag to use seq2seq", action="store_true")
+    parser.add_argument("--seq2seq", help="set this flag to use seq2seq", action="store_false")
 
     parser.add_argument("-winlen", "--winlen", type=float,
                         default=0.02, help="specify the window length of feature")

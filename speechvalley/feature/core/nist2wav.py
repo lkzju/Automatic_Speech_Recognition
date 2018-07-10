@@ -23,3 +23,4 @@ def nist2wav(src_dir):
 
 if __name__ == '__main__':
     nist2wav('/home/pony/wsj/')
+    #nist2wav("C:\\Research\\Corpus\\TIMIT")
