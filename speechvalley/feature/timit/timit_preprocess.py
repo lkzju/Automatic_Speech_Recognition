@@ -36,6 +36,7 @@ phn = ['aa', 'ae', 'ah', 'ao', 'aw', 'ax', 'ax-h', 'axr', 'ay', 'b', 'bcl', 'ch'
 #phn = ['sil', 'aa', 'ae', 'ah', 'ao', 'aw', 'ax', 'ax-h', 'ay', 'b', 'ch', 'd', 'dh', 'dx', 'eh', 'el', 'en', 'epi', 'er', 'ey', 'f', 'g', 'hh', 'ih', 'ix', 'iy', 'jh', 'k', 'l', 'm', 'n', 'ng', 'ow', 'oy', 'p', 'q', 'r', 's', 'sh', 't', 'th', 'uh', 'uw', 'v', 'w', 'y', 'z', 'zh']
 
 def wav2feature(rootdir, save_directory, mode, feature_len, level, keywords, win_len, win_step,  seq2seq, save):
+    timit_dir = os.path.abspath(os.path.join(rootdir, os.pardir))
     feat_dir = os.path.join(save_directory, level, keywords, mode)
     label_dir = os.path.join(save_directory, level, keywords, 'label')
     if not os.path.exists(label_dir):
@@ -46,12 +47,21 @@ def wav2feature(rootdir, save_directory, mode, feature_len, level, keywords, win
     for subdir, dirs, files in os.walk(rootdir):
         for file in files:
             fullFilename = os.path.join(subdir, file)
-            filenameNoSuffix =  os.path.splitext(fullFilename)[0]
+            filenameNoSuffix = os.path.splitext(fullFilename)[0]
             if file.endswith('.WAV'):
+                file_phn_dir = os.path.split(fullFilename)[0]
+                file_wav = os.path.join(timit_dir, "wav")
+
+                file_wav_2 = fullFilename[len(timit_dir) + 1:]
+                file_wav = os.path.join(file_wav, file_wav_2)
+                file_wav = file_wav.replace(".WAV", ".wav")
+                if not os.path.exists(file_wav):
+                    continue
+
                 rate = None
                 sig = None
                 try:
-                    (rate,sig)= wav.read(fullFilename)
+                    (rate,sig)= wav.read(file_wav)
                 except ValueError as e:
                     if e.message == "File format 'NIST'... not understood.":
                         print('You should use nist2wav.sh to convert NIST format files to WAV files first, nist2wav.sh is in core folder.')
@@ -62,7 +72,7 @@ def wav2feature(rootdir, save_directory, mode, feature_len, level, keywords, win
                 print(feat.shape)
 
                 if level == 'phn':
-                    labelFilename = filenameNoSuffix + '.PHN'
+                    labelFilename = os.path.join(file_phn_dir, file.replace(".WAV", ".PHN"))
                     phenome = []
                     with open(labelFilename,'r') as f:
                         if seq2seq is True:
@@ -77,7 +87,7 @@ def wav2feature(rootdir, save_directory, mode, feature_len, level, keywords, win
                     phenome = np.array(phenome)
 
                 elif level == 'cha':
-                    labelFilename = filenameNoSuffix + '.WRD'
+                    labelFilename = os.path.join(file_phn_dir, file.replace(".WAV", ".WRD"))
                     phenome = []
                     sentence = ''
                     with open(labelFilename,'r') as f:
@@ -102,9 +112,9 @@ def wav2feature(rootdir, save_directory, mode, feature_len, level, keywords, win
                 count+=1
                 print('file index:',count)
                 if save:
-                    featureFilename = feat_dir + filenameNoSuffix.split('/')[-2]+'-'+filenameNoSuffix.split('/')[-1]+'.npy'
+                    featureFilename = os.path.join(feat_dir, filenameNoSuffix.split(os.sep)[-2]) + filenameNoSuffix.split(os.sep)[-1]+'.npy'
                     np.save(featureFilename,feat)
-                    labelFilename = label_dir + filenameNoSuffix.split('/')[-2]+'-'+filenameNoSuffix.split('/')[-1]+'.npy'
+                    labelFilename = os.path.join(label_dir, filenameNoSuffix.split(os.sep)[-2]) +filenameNoSuffix.split(os.sep)[-1]+'.npy'
                     print(labelFilename)
                     np.save(labelFilename,phenome)
 
