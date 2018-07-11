@@ -43,8 +43,9 @@ flags.DEFINE_integer('num_iter', 3, 'set the number of iterations in routing')
 flags.DEFINE_float('lr', 0.0001, 'set the learning rate')
 flags.DEFINE_float('dropout_prob', 0.1, 'set probability of dropout')
 flags.DEFINE_float('grad_clip', 1, 'set the threshold of gradient clipping, -1 denotes no clipping')
-flags.DEFINE_string('datadir', '/home/pony/github/data/timit', 'set the data root directory')
-flags.DEFINE_string('logdir', '/home/pony/github/log/timit', 'set the log directory')
+#flags.DEFINE_string('datadir', '/home/pony/github/data/timit', 'set the data root directory')
+flags.DEFINE_string('datadir', "C:\Research\Corpus\InputFiles\TIMIT_13", 'set the data root directory')
+flags.DEFINE_string('logdir', "C:\Research\Corpus\InputFiles\TIMIT_13\log", 'set the log directory')
 
 
 FLAGS = flags.FLAGS
