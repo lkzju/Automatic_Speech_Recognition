@@ -14,6 +14,7 @@ import os
 
 
 def nist2wav(src_dir):
+    print(" trying to run nist2wav(): " + src_dir)
     count = 0
     for subdir, dirs, files in os.walk(src_dir):
         print("  searching the dir: " + subdir)
@@ -36,5 +37,5 @@ def nist2wav(src_dir):
 
 if __name__ == '__main__':
     #nist2wav('/home/pony/wsj/')
-    nist2wav("C:\\Research\\Corpus\\TIMIT")
-    #nist2wav('~/Corpus/TIMIT')
+    #nist2wav("C:\\Research\\Corpus\\TIMIT")
+    nist2wav("/home/kli/Corpus/TIMIT")
