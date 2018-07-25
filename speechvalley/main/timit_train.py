@@ -123,9 +123,9 @@ class Runner(object):
 
     @describe
     def load_data(self, args, mode, type):
-        if mode == 'train':
+        if mode == 'TRAIN':
             return load_batched_data(train_mfcc_dir, train_label_dir, batch_size, mode, type)
-        elif mode == 'test':
+        elif mode == 'TEST':
             return load_batched_data(test_mfcc_dir, test_label_dir, batch_size, mode, type)
         else:
             raise TypeError('mode should be train or test.')
