@@ -165,7 +165,7 @@ if __name__ == '__main__':
     if save_directory == ".":
         save_directory = os.getcwd()
     if not os.path.isdir(root_directory):
-        raise ValueError("Root directory does not exist!")
+        raise ValueError("Root directory does not exist: " + root_directory)
     if not os.path.exists(save_directory):
         os.makedirs(save_directory)
     wav2feature(root_directory, save_directory, mode=mode, feature_len=feature_len,
