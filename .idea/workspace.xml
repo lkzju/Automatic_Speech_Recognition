@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fd28b515-0489-4aff-96f0-3650b1e9425c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/speechvalley/feature/timit/timit_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/speechvalley/feature/timit/timit_preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speechvalley/main/timit_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/speechvalley/main/timit_train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="timit_preprocess.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="timit_preprocess.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/speechvalley/feature/timit/timit_preprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="140" column="49" lean-forward="true" selection-start-line="140" selection-start-column="49" selection-end-line="140" selection-end-column="49" />
+            <state relative-caret-position="496">
+              <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
               <folding>
                 <element signature="e#1184#1193#0" expanded="true" />
               </folding>
@@ -30,11 +31,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="timit_train.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="timit_train.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/speechvalley/main/timit_train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="940">
-              <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+            <state relative-caret-position="576">
+              <caret line="50" column="59" selection-start-line="50" selection-start-column="59" selection-end-line="50" selection-end-column="59" />
               <folding>
                 <element signature="e#344#355#0" expanded="true" />
               </folding>
@@ -115,9 +116,9 @@
         <option value="$PROJECT_DIR$/speechvalley/feature/core/calcmfcc.py" />
         <option value="$PROJECT_DIR$/speechvalley/utils/calcPER.py" />
         <option value="$PROJECT_DIR$/speechvalley/utils/visualization.py" />
-        <option value="$PROJECT_DIR$/speechvalley/main/timit_train.py" />
         <option value="$PROJECT_DIR$/speechvalley/feature/kli/nist2wav_kli.py" />
         <option value="$PROJECT_DIR$/speechvalley/feature/timit/timit_preprocess.py" />
+        <option value="$PROJECT_DIR$/speechvalley/main/timit_train.py" />
       </list>
     </option>
   </component>
@@ -170,6 +171,12 @@
               <item name="speechvalley" type="462c0819:PsiDirectoryNode" />
               <item name="feature" type="462c0819:PsiDirectoryNode" />
               <item name="timit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Automatic_Speech_Recognition" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Automatic_Speech_Recognition" type="462c0819:PsiDirectoryNode" />
+              <item name="speechvalley" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -254,7 +261,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/speechvalley/feature/timit/timit_preprocess.py" />
-      <option name="PARAMETERS" value="&quot;C:\Research\Corpus\TIMIT&quot; &quot;C:\Research\Corpus\InputFiles&quot;" />
+      <option name="PARAMETERS" value="&quot;C:\Research\Corpus\TIMIT&quot; &quot;C:\Research\Corpus\InputFiles\TIMIT_13&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -346,12 +353,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/speechvalley/main/timit_train.py</url>
-          <line>245</line>
+          <line>248</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/speechvalley/main/timit_train.py</url>
-          <line>123</line>
+          <line>126</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
@@ -635,16 +642,6 @@
     <entry file="file://$PROJECT_DIR$/speechvalley/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/speechvalley/main/timit_train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="940">
-          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-          <folding>
-            <element signature="e#344#355#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/speechvalley/feature/core/calcmfcc.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -680,10 +677,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/speechvalley/feature/timit/timit_preprocess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="140" column="49" lean-forward="true" selection-start-line="140" selection-start-column="49" selection-end-line="140" selection-end-column="49" />
+        <state relative-caret-position="496">
+          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
           <folding>
             <element signature="e#1184#1193#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speechvalley/main/timit_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="50" column="59" selection-start-line="50" selection-start-column="59" selection-end-line="50" selection-end-column="59" />
+          <folding>
+            <element signature="e#344#355#0" expanded="true" />
           </folding>
         </state>
       </provider>

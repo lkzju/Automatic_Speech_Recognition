@@ -122,7 +122,7 @@ def wav2feature(rootdir, save_directory, mode, feature_len, level, keywords, win
 if __name__ == '__main__':
     # character or phoneme
     #corpus_dir = "C:\\Research\\Corpus\\TIMIT\\"
-    #save_dir = "C:\\Research\\Corpus\\InputFiles"
+    #save_dir = "C:\\Research\\Corpus\\InputFiles\\TIMIT_13"
     parser = argparse.ArgumentParser(prog='timit_preprocess',
                                      description="""
                                      Script to preprocess timit data
