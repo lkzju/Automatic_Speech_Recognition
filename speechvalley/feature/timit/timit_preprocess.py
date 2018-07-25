@@ -131,8 +131,8 @@ if __name__ == '__main__':
     parser.add_argument("save", help="Directory where preprocessed arrays are to be saved",
                         type=str)
     parser.add_argument("-n", "--name", help="Name of the dataset",
-                        choices=['train', 'test'],
-                        type=str, default='train')
+                        choices=['TRAIN', 'DEVELOP', 'CORE_TEST', 'TEST'],
+                        type=str, default='TRAIN')
     parser.add_argument("-l", "--level", help="Level",
                         choices=['cha', 'phn'],
                         type=str, default='phn')
