@@ -24,7 +24,7 @@ from tensorflow.python.platform import flags
 from tensorflow.python.platform import app
     
 flags.DEFINE_string('task', 'timit', 'set task name of this program')
-flags.DEFINE_string('mode', 'train', 'set whether to train or test')
+flags.DEFINE_string('mode', 'TRAIN', 'set whether to train or test')
 flags.DEFINE_boolean('keep', False, 'set whether to restore a model, when test mode, keep should be set to True')
 flags.DEFINE_string('level', 'phn', 'set the task level, phn, cha, or seq2seq, seq2seq will be supported soon')
 flags.DEFINE_string('model', 'CapsuleNetwork', 'set the model to use, DBiRNN, BiRNN, ResNet..')
@@ -48,7 +48,7 @@ flags.DEFINE_float('grad_clip', 1, 'set the threshold of gradient clipping, -1 d
 #flags.DEFINE_string('datadir', "C:\Research\Corpus\InputFiles\TIMIT_13", 'set the data root directory')
 #flags.DEFINE_string('logdir', "C:\Research\Corpus\InputFiles\TIMIT_13\log", 'set the log directory')
 flags.DEFINE_string('datadir', "/home/kli/Corpus/InputFiles/TIMIT_13", 'set the data root directory')
-flags.DEFINE_string('logdir', "/home/kli/Corpus/InputFiles/TIMIT_13\log", 'set the log directory')
+flags.DEFINE_string('logdir', "/home/kli/Corpus/InputFiles/TIMIT_13/log", 'set the log directory')
 
 
 FLAGS = flags.FLAGS
