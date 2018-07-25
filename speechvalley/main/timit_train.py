@@ -24,7 +24,7 @@ from tensorflow.python.platform import flags
 from tensorflow.python.platform import app
     
 flags.DEFINE_string('task', 'timit', 'set task name of this program')
-flags.DEFINE_string('mode', 'TRAIN', 'set whether to train or test')
+flags.DEFINE_string('mode', 'TRAIN', 'set whether to TRAIN or TEST')
 flags.DEFINE_boolean('keep', False, 'set whether to restore a model, when test mode, keep should be set to True')
 flags.DEFINE_string('level', 'phn', 'set the task level, phn, cha, or seq2seq, seq2seq will be supported soon')
 flags.DEFINE_string('model', 'CapsuleNetwork', 'set the model to use, DBiRNN, BiRNN, ResNet..')
@@ -91,14 +91,14 @@ keep = FLAGS.keep
 keep_prob = 1-FLAGS.dropout_prob
 
 print('%s mode...'%str(mode))
-if mode == 'test':
+if mode == 'TEST':
   batch_size = 100
   num_epochs = 1
 
-train_mfcc_dir = os.path.join(datadir, level, 'train', 'mfcc')
-train_label_dir = os.path.join(datadir, level, 'train', 'label')
-test_mfcc_dir = os.path.join(datadir, level, 'test', 'mfcc')
-test_label_dir = os.path.join(datadir, level, 'test', 'label')
+train_mfcc_dir = os.path.join(datadir, level, 'TRAIN', 'mfcc')
+train_label_dir = os.path.join(datadir, level, 'TRAIN', 'label')
+test_mfcc_dir = os.path.join(datadir, level, 'TEST', 'mfcc')
+test_label_dir = os.path.join(datadir, level, 'TEST', 'label')
 logfile = os.path.join(loggingdir, str(datetime.datetime.strftime(datetime.datetime.now(), 
     '%Y-%m-%d %H:%M:%S') + '.txt').replace(' ', '').replace('/', ''))
 
@@ -128,7 +128,7 @@ class Runner(object):
         elif mode == 'TEST':
             return load_batched_data(test_mfcc_dir, test_label_dir, batch_size, mode, type)
         else:
-            raise TypeError('mode should be train or test.')
+            raise TypeError('mode should be TRAIN or TEST.')
 
     def run(self):
         # load data
@@ -159,7 +159,7 @@ class Runner(object):
             for epoch in range(num_epochs):
                 ## training
                 start = time.time()
-                if mode == 'train':
+                if mode == 'TRAIN':
                     print('Epoch', epoch + 1, '...')
                 batchErrors = np.zeros(len(batchedData))
                 batchRandIxs = np.random.permutation(len(batchedData))
@@ -172,7 +172,7 @@ class Runner(object):
                                 model.seqLengths: batchSeqLengths}
 
                     if level == 'cha':
-                        if mode == 'train':
+                        if mode == 'TRAIN':
                             _, l, pre, y, er = sess.run([model.optimizer, model.loss,
                                 model.predictions, model.targetY, model.errorRate],
                                 feed_dict=feedDict)
@@ -181,7 +181,7 @@ class Runner(object):
                             print('\n{} mode, total:{},batch:{}/{},epoch:{}/{},train loss={:.3f},mean train CER={:.3f}\n'.format(
                                 level, totalN, batch+1, len(batchRandIxs), epoch+1, num_epochs, l, er/batch_size))
 
-                        elif mode == 'test':
+                        elif mode == 'TEST':
                             l, pre, y, er = sess.run([model.loss, model.predictions, 
                                 model.targetY, model.errorRate], feed_dict=feedDict)
                             batchErrors[batch] = er
@@ -189,7 +189,7 @@ class Runner(object):
                                 level, totalN, batch+1, len(batchRandIxs), l, er/batch_size))
 
                     elif level == 'phn':
-                        if mode == 'train':
+                        if mode == 'TRAIN':
                             _, l, pre, y = sess.run([model.optimizer, model.loss,
                                 model.predictions, model.targetY],
                                 feed_dict=feedDict)
@@ -198,7 +198,7 @@ class Runner(object):
                             print('\n{} mode, total:{},batch:{}/{},epoch:{}/{},train loss={:.3f},mean train PER={:.3f}\n'.format(
                                 level, totalN, batch+1, len(batchRandIxs), epoch+1, num_epochs, l, er))
                             batchErrors[batch] = er * len(batchSeqLengths)
-                        elif mode == 'test':
+                        elif mode == 'TEST':
                             l, pre, y = sess.run([model.loss, model.predictions, model.targetY], feed_dict=feedDict)
                             er = get_edit_distance([pre.values], [y.values], True, level)
                             print('\n{} mode, total:{},batch:{}/{},test loss={:.3f},mean test PER={:.3f}\n'.format(
@@ -214,7 +214,7 @@ class Runner(object):
                         print('Output:\n' + output_to_sequence(pre, type=level))
 
                     
-                    if mode=='train' and ((epoch * len(batchRandIxs) + batch + 1) % 20 == 0 or (
+                    if mode=='TRAIN' and ((epoch * len(batchRandIxs) + batch + 1) % 20 == 0 or (
                            epoch == num_epochs - 1 and batch == len(batchRandIxs) - 1)):
                         checkpoint_path = os.path.join(savedir, 'model.ckpt')
                         model.saver.save(sess, checkpoint_path, global_step=epoch)
@@ -223,7 +223,7 @@ class Runner(object):
                 delta_time = end - start
                 print('Epoch ' + str(epoch + 1) + ' needs time:' + str(delta_time) + ' s')
 
-                if mode=='train':
+                if mode=='TRAIN':
                     if (epoch + 1) % 1 == 0:
                         checkpoint_path = os.path.join(savedir, 'model.ckpt')
                         model.saver.save(sess, checkpoint_path, global_step=epoch)
@@ -234,7 +234,7 @@ class Runner(object):
                     logging(model, logfile, epochER, epoch, delta_time, mode=mode)
 
 
-                if mode=='test':
+                if mode=='TEST':
                     with open(os.path.join(resultdir, level + '_result.txt'), 'a') as result:
                         result.write(output_to_sequence(y, type=level) + '\n')
                         result.write(output_to_sequence(pre, type=level) + '\n')
